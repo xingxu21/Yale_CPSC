@@ -1,0 +1,18 @@
+ESTIMATE of time to complete assignment: 20 hours
+
+       Time     Time
+Date   Started  Spent Work completed
+----   -------  ----  --------------
+12/8   5:00pm  1:00  Printed out assignment. looked over the things in lugraph.c
+12/9   4:00pm  4:00  Wrote pesudeocode for everything in the ADT and implemented ADT. Passes unit tests
+12/10  5:00pm  7:00  Wrote pesudocode for TSP and implemented. Passes all tests except for valgrind errors
+12/12  1:00pm  2:00	 Debugged and fixed valgrind errors
+
+               ----
+               14:00 TOTAL time spent
+
+I discussed BFS with Eric Zhang and Christine Yang. 
+
+The hardest part of this assignment for me was understanding of how to implement the hurestic in TSP. I am a fairly visual person, so after I talked with professor Glenn in office hours on tuesday and he drew what the graph would look like, I began to have a better understanding of what was happening. Once that happened, I was able to write the pesudocode, implement, and do some simple debugging pretty easily. 
+
+implementing all of the lugraph stuff was actually pretty fun, and all of the functions were relatively straight forward. The hardest part of that was actually just implementing a queue with nice enque and deque functions. I was thinking about using a doubly linked list for my implementation, but Christine Yang forwarded me a link to an implementation that just used an array. I decided to do the same thing, and in the long run, it probably saved me from having much more valgrind errors. Basically, this queue was a struct that contained two index variables, one for the first thing in the queue, one for the last thing in the queue (dequeing was just moving the first index variable, not actually removing anything from the array)

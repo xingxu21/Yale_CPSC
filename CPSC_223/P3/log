@@ -1,0 +1,19 @@
+ESTIMATE of time to complete assignment: 26 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+10/11  6:00pm  2:00  read and printed out the assignment file.  
+10/20  6:00pm  3:30  Wrote pesudeocode for trying track.c and heatmap.c. Heatmap.c was much simpler than origionall thought
+10/24  8:00pm  5:00  Unit tests passed except for 13. I'll figure that out later
+11/13  2:00pm  3:00	 Valgrind errors. many of the valgrind things didn't work. Most of the ones having to do with heatmap 					   did not work as I wanted them too. Figured out it was a problem with one of my arrays
+11/14  6:00pm  6:00	 Errors when creating the heatmap. I suspect fill, get_bounds, and populate
+11/15  6:00pm  3:00  Found an error in my heatmap.c. was not properly freeing the memory spaces used for the heatmap
+11/16  7:00am  5:00  Valgrind debugged all of the stuff that was causing problems on 11/14. It was mostly from populate. 
+               ----
+               27 TOTAL time spent
+
+I discussed my pesudocode with: Christine Yang, Austin Zhang (he was in this class last year, helped me with valgrind errors)
+
+I have recovered from dying, but I ended up having to do multiple 223 psets concurrently for a few weeks which was absolutely horrible. Mallocing was bad and valgrinding was bad for heatmap because it turns out I had 1. not freed many things properly, 2 not mallocing enough space for some rows of the heatmap and throwing a bunch of malloc errors due to that. Opaque structs were also annoying and as they were the main theme of this pset... They're like two structs where one struct is pretending to be the other struct, and thinking about it and making sure that the pretend struct has the same size as the actual struct was the source of much annoyance. 
+

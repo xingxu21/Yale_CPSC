@@ -1,0 +1,305 @@
+
+
+/**
+ * Creates a balanced k-d tree containing copies of the points in the
+ * given array of locations.  If the array is NULL and n is 0 then the
+ * returned tree is empty.  If the tree could not be created then the
+ * returned value is NULL.
+ *
+ * @param pts an array of unique valid locations, non-NULL if n != 0
+ * @param n the number of points in that array, or 0 if pts is NULL
+ * @return a pointer to the newly created collection of points, or NULL
+ * if it could not be created
+ */
+
+kdtree *kdtree_create(const location *pts, int n){
+	printf("kdtree_create has been called\n");
+
+	//if we have n=0, then must create an empty tree. 
+	if (n == 0)
+	{
+		kdtree *pointer;
+		pointer = malloc(sizeof(kdtree));
+
+		if (pointer->root == NULL)
+		{
+			return pointer;
+		}
+
+		pointer->root = NULL;
+		return pointer;
+	}
+
+
+	//if n = 1 then the single point provided is the entire tree
+	if (n == 1)
+	{
+		kdtree *pointer;
+		pointer = malloc(sizeof(kdtree));
+		pointer->root = malloc(sizeof(kdtree_node));
+
+		if (pointer->root == NULL)
+		{
+			return pointer;
+		}
+
+		//if the malloc didn't fail, we make our root 
+		pointer->root->xaxis         = true;							
+		pointer->root->coordinates.x = pts->x;
+		pointer->root->coordinates.y = pts->y;	
+		pointer->root->parent        = NULL;                
+		pointer->root->leftchild     = NULL;				
+		pointer->root->rightchild    = NULL;
+		return pointer;
+	}
+
+
+	//if n = 2 since the list is ordered, the point on the right is going to be greater than the point on the left
+	if (n ==2)
+	{
+		kdtree *pointer;
+		pointer = malloc(sizeof(kdtree));
+		pointer->root = malloc(sizeof(kdtree_node));
+
+		if (pointer->root == NULL)
+		{
+			return pointer;
+		}
+
+		//if the malloc didn't fail, we make our root 
+		pointer->root->xaxis         = true;							
+		pointer->root->coordinates.x = pts->x;
+		pointer->root->coordinates.y = pts->y;	
+		pointer->root->parent        = NULL;                
+		pointer->root->leftchild     = NULL;				
+		pointer->root->rightchild    = malloc(sizeof(kdtree_node));
+
+		kdtree_node *pointer2;
+
+		pointer2 = pointer->root->rightchild;
+
+		pointer2->xaxis	        = false;
+		pointer2->coordinates.x = (pts+1)->x;
+		pointer2->coordinates.y = (pts+1)->y;
+		pointer2->parent        = pointer->root;
+		pointer2->leftchild     = NULL;
+		pointer2->rightchild    = NULL;
+
+		return pointer;
+	}
+
+	kdtree *pointer;
+	location *array_x; //pointer for array sorted by x
+	location *array_y; //pointer for array sorted by y
+
+	mergeSort(n, pts, array_x, true); //assign them to the outputs of the mergesort
+	mergeSort(n, pts, array_y, false);
+
+	//check to make sure that there are not any duplicated points in the x or y arrays
+	for (int i = 0; i < n-1; ++i)
+	{
+		if (array_x[i].x == array_x[i+1].x && array_x[i].y == array_x[i+1].y)
+		{
+			return pointer;
+		}
+
+		if (array_y[i].x == array_y[i+1].x && array_y[i].y == array_y[i+1].y)
+		{
+			return pointer;
+		}
+	}
+
+	//malloc pointer to a kdtree_node, this will be the root node for the actual tree that we create. Fields are initiated as such
+	kdtree_node *root_node, *lchild, *rchild;
+	
+	location *array_xleft, *array_yleft, *array_xright, *array_yright;
+
+	location median = median_and_arrays(array_x, array_y,
+		n, true,
+		array_xleft, array_xright, array_yleft, array_yright);
+
+	
+	root_node->xaxis         = true;				//true because node			
+	root_node->coordinates.x = median.x;				//x and y are values from the median location value
+	root_node->coordinates.y = median.y;				//	pointed to by pts
+	root_node->parent        = NULL;           		//is root so no parent
+	root_node->leftchild     = lchild;				//no children yet
+	root_node->rightchild    = rchild;				//no children yet
+
+
+
+
+
+	//if n is not 0 1 or 2, we call the recursive helper functon to create the tree
+	helper_for_create(root_node->leftchild, root_node, n, array_xleft, array_yleft, false);
+	helper_for_create(root_node->rightchild, root_node, n, array_xright, array_yright, false);
+
+}
+
+
+void helper_for_create(kdtree_node *current_node, kdtree_node *parent, int n, location *x_array, location *y_array, xaxis){
+	//we assume we are passed the pointer to a node. We give it no children because subsequent recursive calls will give it children if it is suppoused to have any. this is done with a while loop while n>0
+	if (n > 0)
+	{
+		location *array_xleft, *array_yleft, *array_xright, *array_yright;
+
+		location median = median_and_arrays(x_array, y_array,
+			n, xaxis,
+			array_xleft, array_xright, array_yleft, array_yright);
+
+		kdtree_node *lchild, *rchild;
+
+
+
+		current_node->xaxis         = xaxis;
+		current_node->coordinates.x = median.x;
+		current_node->coordinates.y = median.y;
+		current_node->parent        = parent;
+		current_node->leftchild	    = lchild;
+		current_node->rightchild    = rchild;
+
+		n-=1;
+
+		helper_for_create(current_node->leftchild, current_node, n, array_xleft, array_yleft, !xaxis);
+		helper_for_create(current_node->rightchild, current_node, n, array_xright, array_yright, !xaxis);
+
+	}
+
+	return;
+}
+
+
+
+
+
+
+//function for getting median value and then 4 different subarays from an imput array. The four subarays are x_array_left, x_array_right, y_array_left, and y_array_right. returns location struct that is the median locaton
+location median_and_arrays(location listofx[], location listofy[],
+	int n, bool xaxis,
+	location x_array_left[], location x_array_right[],
+	location y_array_left[], location y_array_right[]){
+
+	int index_of_median = ((n - 1) / 2); //always will be the index of the median thing
+
+	//give arrays actual malloced memory space
+	location x_array_left[]  = malloc(sizeof(location)*index_of_median);
+	location x_array_right[] = malloc(sizeof(location)*(n - index_of_median - 1));
+	location y_array_left[]  = malloc(sizeof(location)*index_of_median);
+	location y_array_right[] = malloc(sizeof(location)*(n - index_of_median - 1));
+
+	location median; //initialize median 
+
+	if (xaxis == true)
+	{
+		median = listofx[index_of_median]
+
+		//cutting by x, relatively simpler
+		//x_array_left
+		for (int i = 0; i < index_of_median; ++i)
+		{
+			x_array_left[i] = listofx[i]; 
+		}
+
+		//x_array_right
+		for (int i = index_of_median + 1; i < n; ++i)
+		{
+			x_array_right[i-(index_of_median + 1)] =  listofx[i];
+		}
+
+		int countleft = 0;
+		int countright = 0;
+		//y sub arrays
+		for (int i = 0; i < n; ++i)
+		{
+			
+			if (listofy[i]->x < listofx[index_of_median]->x) // if in y array left
+			{
+				y_array_left[count] = listofy[i];
+				countleft += 1;
+			}
+
+			else if (listofy[i]->x > listofx[index_of_median]->x)
+			{
+				y_array_right[count] = listofy[i];
+				countright += 1;
+			}
+
+			else
+			{
+				if (listofy[i]->y < listofx[index_of_median]->y) //tie break when x is equal by y
+				{
+					y_array_left[count] = listofy[i];
+					countleft += 1;
+				}
+
+				else if (listofy[i]->y > listofx[index_of_median]->y)
+				{
+					y_array_right[count] = listofy[i];
+					countright += 1;
+				}
+			}
+
+			
+		}
+		
+	}
+
+	if (xaxis == false)
+	{
+		median = listofy[index_of_median]
+
+		//cutting by y, relatively simpler
+		//y_array_left
+		for (int i = 0; i < index_of_median; ++i)
+		{
+			y_array_left[i] = listofy[i]; 
+		}
+
+		//y_array_right
+		for (int i = index_of_median + 1; i < n; ++i)
+		{
+			y_array_right[i-(index_of_median + 1)] =  listofy[i];
+		}
+
+		int countleft = 0;
+		int countright = 0;
+		//x sub arrays
+		for (int i = 0; i < n; ++i)
+		{
+			
+			if (listofy[i]->y < listofx[index_of_median]->y) // if in x array left
+			{
+				x_array_left[count] = listofx[i];
+				countleft += 1;
+			}
+
+			else if (listofy[i]->y > listofx[index_of_median]->y)
+			{
+				x_array_right[count] = listofx[i];
+				countright += 1;
+			}
+
+			else
+			{
+				if (listofy[i]->x < listofx[index_of_median]->x) //tie break when y is equal by x
+				{
+					x_array_left[count] = listofx[i];
+					countleft += 1;
+				}
+
+				else if (listofy[i]->x > listofx[index_of_median]->x)
+				{
+					x_array_right[count] = listofx[i];
+					countright += 1;
+				}
+			}
+
+			
+		}
+
+
+	}
+
+	return median; //return the median value
+
+}

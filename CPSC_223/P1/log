@@ -1,0 +1,15 @@
+ESTIMATE of time to complete assignment: 10 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+9/9    8:00pm  2:00  read assignment drew out a diagram for my state computer
+
+9/13   6am     4:00  wrote program, got it to work.
+9/16   4:45pm  3:00  edge cases  
+               ----
+               9:00 TOTAL time spent
+
+I discussed my solution with: Christine Yang. She also helped check my state computer.
+
+Drawing out the state computer took a really long time because there were so many states. Also after I programmed it, I realized that I had used assignnment instead of compare for all of my if statements. This Pset's main difficulty probably resulted just from how many states there were in my state machine which made writning, and finding all the errors very tedious. However, I just made print statements in each state and debugging wasn't toooo hard. there were just a lot of bugs because i'm bad at typing. 

@@ -1,0 +1,19 @@
+ESTIMATE of time to complete assignment: 25 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+11/17  6:00pm  4:00  Printed out assignment. Googled lots of kd tree stuff and though about implementation
+11/18  6:00pm  2:00  Wrote pesudeocode for everything, though more about NN algorithm
+11/19  8:00pm  3:00  Did some going over of pesudocode and worked out some kinks. Finally understand NN algo
+11/20  6:00pm  6:00	 Implemented everuthing except NN and Create
+11/21  9:00am  3:00  Implemented NN and Create. Tested, debugged
+11/22  5:00pm  2:00  Worked out some final bugs when I had time in the afternoon and submitted. 
+11/23  8:00am 12:00
+               ----
+               32:00 TOTAL time spent
+
+I discussed NN with Eric Zhang and Christine Yang. Discussed Created with David C.
+
+This one was fairly breezy. Got into zone with implementing stuff and was able to implement everything except NN and create in one sitting. The thing I actually had the most trouble with was actually understanding how exactly the NN algorithm worked: i had found some different descriptions of Kd trees online and a lot of them actually didn't create balanced trees, nor did they preprocess the points by first sorting by x and y and then starting off with the median. I probably spent the majority of the first two days I worked on the problem trying to work out how to do the NN algorighm myself, so that was a lot of drawing trees and then considering how to actually traverse though the tree to find the nearest thing. I eventually kinda discovered the answer by myself, but Eric and Christine gave me the last lil bit of a push over the edge so that I finally understood how to get the algo. My own version of the algo only would work with balanced trees and didn't actually guarntee finding the correct NN, just a "relatively" close one. 
+Mergesort was gotten from Aspnes's notes

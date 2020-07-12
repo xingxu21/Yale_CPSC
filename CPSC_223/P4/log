@@ -1,0 +1,17 @@
+ESTIMATE of time to complete assignment: 20 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+11/01  6:00pm  2:00  read and printed out the assignment file. Looked up more hash table stuff online and looked up blotto 
+11/02  6:00pm  3:30  Wrote pesudeocode for trying smap.c and for blotto.c
+11/05  8:00pm  5:00  Tried to implement pesudo code. Didn't work RIP ME
+11/07  6:00pm  6:00	 Tried to fix unit tests (rewrote smap.c). Ran in to massive bugs with a function that wasn't required 						in smap.h
+11/08  6:00pm  3:00  Re did pesudo code for unit tests. and implemented. It works. FINALLY
+11/09  9:00pm  7:00  Turned out my blotto.c was pretty ok. Had some valgrind erros but fixed them. Fixed everything. I had 						been working on this problem set for way too long
+               ----
+               26:30 TOTAL time spent
+
+I discussed my pesudocode with: Christine Yang.
+
+Due to my recent unfortunate health with concussion and appendicitis, I had missed a significant portion of class, and I spend a very long time looking though our textbook to read about hash tables and looking though the class notes to try and catch up. That took quite a while, and since I was also catching up on my work for other classes, I was very exhausted all the time. This resulted in me making a very large amount of very basic mistakes in the in smap.c.  The hardest part was plugging all the leaks from valgrind. Coming up with the concept of how to implement a hash table for this problem was not too hard, writing smap.c took a bit of time due to all the bugs that popped up, but using just using valgrind in general and then fixing valgrind errors probably took the most time. 
