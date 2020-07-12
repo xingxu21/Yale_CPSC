@@ -6,6 +6,8 @@ To the students who may be reading this:
 1. If you copy stuff, you're cheating. Yale CPSC professors make it clear 
    that our code is MOSSed. You will be caught. Don't do it. 
 2. Don't copy my code.
+3. You WILL literally get kicked out of Yale. 
+4. Don't do it. 
 
 
 ________________________________________________________________________________________
