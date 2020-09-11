@@ -1,0 +1,14 @@
+ESTIMATE of time to complete assignment: 10 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+9/09  12:20pm  2:30	read assignment, wrote code for reading in inputs, wrote code for determing valid moves for a position (up, down, left, right)
+9/10  4:30pm   1:00 wrote some helper functions, wrote pesudo code for the algorithm.
+9/10  6:14pm   2:30 continued working on helper functions and implimened BFS to find new start positions after a move.
+9/10  9:30pm.  1:30 code 99% way there. gotta do a lil bit of debugging   Will probably need to change my backtracking algorithm
+9/11  11:30	   2:30 Figured out that there was a problem with my backtracking component. Tried again. 
+	               ----
+               10:00  TOTAL time spent
+
+I had a hard time thinking correctly about the backtracking algorithm: at first I thought it would be a modified version of BFS, but after having a quick chat with Matt Tu, i saw the light and realized the error of my ways. After that, I had a few problems with correctly undoing my moves, but I was able to sort that out fairly quickly. my test 10 and 11 also happen pretty instantaneously, so i think i'm good on the runtime front
