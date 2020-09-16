@@ -30,19 +30,20 @@ temp_board = lines[2:]
 #parse board
 board = []
 
-for i in temp_board:
-	row = []
-	for j in i:
-		if j == ".":
-			row.append(0)
-		elif j == "\n":
-			board.append(row)
-			row = []
-		elif j == "*":
-			row.append(float('inf'))
-		else:
-			row.append(int(j))
-board.append(row)
+for i in range(len(temp_board)):
+    row = []
+    for j in temp_board[i]:
+            if j == ".":
+                    row.append(0)
+            elif j == "\n":
+                    board.append(row)
+                    row = []
+            elif j == "*":
+                    row.append(float('inf'))
+            else:
+                    row.append(int(j))
+if len(board) < len(temp_board):
+        board.append(row)
 del temp_board
 
 
