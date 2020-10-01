@@ -1,0 +1,12 @@
+ESTIMATE of time to complete assignment: 8 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+9/28  6:14pm   2:30 Read spec. Started drawing diagram of algorithm.
+9/29  9:30pm   3:30 Went though spec again, realized problems with algorithm, remodeled. Initial code
+9/30  9:30pm   3:30 Figured out that there was a problem with my backtracking component. Tried again. 
+	               ----
+               9:30  TOTAL time spent
+
+I had some problems initially with the algorithm: I thought I could be clever and come up with a way to store the game tree in an array. However, that lead to exceedingly long run times, so I had to change my strategy. After that, I talked with Matt Tu a bit, and he pointed me back to the notes on shut the box from class. After going those notes a few more times, I was able to rework my algorithm and my code. However, I ran into a problem with the just the two small examples in the test script. I'm not sure why, but my code does not pass those two cases, but passes all the other cases. I continued working on that for slightly longer than I should have, and am going to submit what I currenty have within the grace period. I will keep trying to figure out why those two small examples are not working aftwerwards. Found it! wrote range(1,6) instead of range(1,7) in two places!
