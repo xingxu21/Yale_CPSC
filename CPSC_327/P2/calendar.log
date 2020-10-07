@@ -1,0 +1,8 @@
+DEBUG:root:2020-10-06T19:13:24.165365, Created event: thingy,1010-10-10,10:14,11:14
+ERROR:root:module 'datetime' has no attribute 'now'
+Traceback (most recent call last):
+  File "CalendarCLI.py", line 39, in run
+    action()
+  File "CalendarCLI.py", line 140, in load
+    logging.debug("%s, Loaded calendar from %s"%(datetime.now().isoformat(), path))
+AttributeError: module 'datetime' has no attribute 'now'
