@@ -1,0 +1,13 @@
+ESTIMATE of time to complete assignment: 10 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+10/12  6:00pm  9:00	 Read spec. Re-watched lecture, look though notes twice. Googled simultaneous games.
+10/13  6:00pm  9:00  Look though notes and google things. Most of implementation
+10/14  4:00pm  8:00  Finished implementation. Chased down two bugys, described below.
+
+	               ----
+               10  TOTAL time spent
+
+This algorithm was much more complicated than the previous algorithms we have had to work with, so I planned on spending a lot of time going over the class notes and lectures to make sure I understand everything before I began implementing. I also looked though piazza just to check if there was any relevant infromation. One of those things ended up costing me a lot of time actually, but I'll get to that later. After reviewing the lecture and the notes multiple times, I had a fairly clear understanding of how to implement the program. Once I implemented it, there were only a few bugs that were pretty quick to work out. My first major bug was a logical erro with checking the inequalities in verify. I had switched the direction of the inequality in two places which resulted in me passing most of the tests, but failing a few. After I read that section out loud, I realized my mistake and was able to quickly fix it. My most time consusiming bug (that took about 2 hours to track down) was the result of piazza post https://piazza.com/class/kdozn338n0v4lk?cid=117 that mentioned "The reason was because the scipy linear program solver expects the input matrix to contain non-zero values. This poses a problem for the wins payoff matrix given an encoding of 1.0 for a win, 0 for a loss, and 0.5 for a tie because then our payoff matrix would be full of 0's. So to get around this we add a constant of 1, which conceptually just means we are changing our encoding. A 2 now corresponds to a win, 1 a loss, and 1.5 a tie." Accordingly, I made my wins, losses, and draws 2, 1, and 1.5 respectively. This caused me to fail only test 17. After checking over my code multiple times, using PDB, calculating things by hand, I felt like I was going crazy. In a hail mary, I switched back to 1, 0, 0.5 for wins, losses, and draws and holy crap it worked. I am turning 21 in 4 hours, so I'm going to see if any liquor stores will allow me to buy some scotch. 
