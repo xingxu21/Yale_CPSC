@@ -1,0 +1,17 @@
+ESTIMATE of time to complete assignment: 10 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+10/25	6:00pm  9:00 rewatched and started implementation
+10/27  6:00pm  9:00	 continuned implementation
+10/28  6:00pm  9:00 	debugg
+10/29  4:00pm  8:00  debugged implementation
+10/31	6:00pm  9:00 debugg
+11/1	6:00pm  3:00am debugg
+11/2	8:00pm  12:00 debugg
+11/2	12:30	3:00	optimization of constant in UCB
+	               ----
+               31.5  TOTAL time spent
+
+I understand MCTS well, but i had extreme difficulty debugging. I tried many may different values of constants, and nothing worked, so I switched to implementing along the pesudocode presented in wikipedia. After that did not work, I tried to re-implement what was dicscussed in class, and it finaly worked. After submitting around noon, I decided to spend some more time optimizing the constant and was able to achieve very good results. I used ALL of my late days on this assignment...
