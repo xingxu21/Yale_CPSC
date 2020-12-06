@@ -1,7 +1,6 @@
 import random
 import sys
 from constants import W, L, WHITE, BLACK
-from copy import deepcopy
 
 class Player:
     "Abstract player class"
@@ -122,15 +121,14 @@ class MiniMaxPlayer(Player):
 
     def take_turn(self, game_state):
         options = game_state.all_possible_moves()
-        states = self._children(game_state)
         max_val = L
         best_move = None
 
         for index in range(len(options)):
             move = options[index]
-            state = states[index]
-
-            value = self._minimax(state, state.current_side, self.depth, L, W)
+            move.execute(game_state)
+            value = self._minimax(game_state, game_state.current_side, self.depth, L, W)
+            move.undo(game_state)
 
             if value > max_val:
                 max_val = value
@@ -145,8 +143,11 @@ class MiniMaxPlayer(Player):
 
         if node.current_side == player:
             v  = minv
-            for child in self._children(node):
-                v_prime  = self._minimax (child, player, depth-1, v, maxv)
+            moves = node.all_possible_moves()
+            for move in moves:
+                move.execute(node)
+                v_prime  = self._minimax (node, player, depth-1, v, maxv)
+                move.undo(node)
                 if v_prime > v:
                     v = v_prime
                 if v > maxv:
@@ -155,8 +156,11 @@ class MiniMaxPlayer(Player):
 
         if node.current_side != player:
             v  = maxv
-            for child in self._children(node):
-                v_prime = self._minimax (child, player, depth-1 ,minv, v)
+            moves = node.all_possible_moves()
+            for move in moves:
+                move.execute(node)
+                v_prime = self._minimax (node, player, depth-1 ,minv, v)
+                move.undo(node)
                 if v_prime < v:
                     v = v_prime
                 if v < minv:
@@ -206,18 +210,18 @@ class MiniMaxPlayer(Player):
 
 
 
-    def _children(self, game_state): #return the children gamestates
-        options = game_state.all_possible_moves()
-        children = []
+    # def _children(self, game_state): #return the children gamestates
+    #     options = game_state.all_possible_moves()
+    #     children = []
 
-        for index in range(len(options)):
-            image = deepcopy(game_state)
-            moves = image.all_possible_moves()
-            move = moves[index]
-            move.execute(image)
-            children.append(image)
+    #     for index in range(len(options)):
+    #         image = deepcopy(game_state)
+    #         moves = image.all_possible_moves()
+    #         move = moves[index]
+    #         move.execute(image)
+    #         children.append(image)
 
-        return children
+    #     return children
 
 
 

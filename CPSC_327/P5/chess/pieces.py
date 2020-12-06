@@ -59,30 +59,46 @@ class Chess(Piece):
         self.value = 1
         if self._side == WHITE:
             self._symbol = u"♙"
-            self._directions = ["ne", "nw"]
+            self._directions = ["n"]
+            self._capture_dirs = ["nw", "ne"]
         if self._side == BLACK:
             self._symbol = u"♟︎"
-            self._directions = ["se", "sw"]
+            self._directions = ["s"]
+            self._capture_dirs = ["sw", "se"]
 
     def enumerate_moves(self):
         moves = ChessMoveSet()
 
-        for direction in self._directions:
+        for direction in self._directions: #regular moves
             one_step = self._board.get_dir(self._current_space, direction)
             if one_step:
-                if not one_step.is_free() and one_step.piece.side == self.side: #space contains a piece on the same side. move on to next direction
-                    continue
-                
-                #space is free or does not contain a piece on the same side
-                captured = []
-                if not one_step.is_free() and one_step.piece.side != self.side and one_step not in captured: #space is not free but contains capturable piece
-                    captured = [one_step]
+                if one_step.is_free():
+                    m = ChessMove(self._current_space, one_step, [])
+                    moves.append(m)
+                    if (self._side == WHITE and one_step.row == 0) or \
+                            (self._side == BLACK and one_step.row == self._board.size - 1):
+                        m.add_promotion()
 
-                m = ChessMove(self._current_space, one_step, captured)
-                moves.append(m)
-                if (self._side == WHITE and one_step.row == 0) or \
-                        (self._side == BLACK and one_step.row == self._board.size - 1):
-                    m.add_promotion()
+                    if self.moved == 0:
+                        two_step = self._board.get_dir(one_step, direction)
+                        if two_step:
+                            if two_step.is_free():
+                                m = ChessMove(self._current_space, two_step, [])
+                                moves.append(m)
+                                if (self._side == WHITE and two_step.row == 0) or \
+                                        (self._side == BLACK and two_step.row == self._board.size - 1):
+                                    m.add_promotion()
+
+        for direction in self._capture_dirs:
+            one_step = self._board.get_dir(self._current_space, direction)
+            if one_step:
+                if not one_step.is_free() and one_step.piece.side != self.side:
+                    captured = [one_step]
+                    m = ChessMove(self._current_space, one_step, captured)
+                    moves.append(m)
+                    if (self._side == WHITE and one_step.row == 0) or \
+                            (self._side == BLACK and one_step.row == self._board.size - 1):
+                        m.add_promotion()
 
         return moves
 

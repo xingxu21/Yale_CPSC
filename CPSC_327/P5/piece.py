@@ -8,6 +8,7 @@ class Piece:
         # read only property
         self._side = side
         self.value = 1
+        self.moved = 0
 
     @property
     def side(self):

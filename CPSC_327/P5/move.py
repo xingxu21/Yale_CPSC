@@ -34,6 +34,7 @@ class Move:
             self._end.piece = self._start.piece  # move to new space
             self._start.piece = None             # clear old space
             self._end.piece.move(self._end)      # update piece object
+            self._end.piece.moved += 1
 
         # promote piece
         if self._promotion:
@@ -67,6 +68,7 @@ class Move:
             self._start.piece = self._end.piece
             self._end.piece = None
             self._start.piece.move(self._start)
+            self._start.piece.moved -=1
 
         # undo captures
         for space, piece in self._captured_pieces.items():
