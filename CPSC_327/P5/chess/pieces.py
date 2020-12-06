@@ -16,16 +16,16 @@ class ChessFactory(PieceFactory):
         color = None
         if x < 2:
             color = BLACK
-            piece_type = self.det_type(space)
+            piece_type = self._det_type(space)
             return piece_type(BLACK, board, space)
 
         if board.size - x < 3:
             color = WHITE
-            piece_type = self.det_type(space)
+            piece_type = self._det_type(space)
             return piece_type(WHITE, board, space)
         return None
 
-    def det_type(self, space):
+    def _det_type(self, space):
         #returns the constructor of the correct chess type
         x = space.row
         y = space.col
