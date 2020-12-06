@@ -62,7 +62,7 @@ class Chess(Piece):
             self._directions = ["n"]
             self._capture_dirs = ["nw", "ne"]
         if self._side == BLACK:
-            self._symbol = u"♟︎"
+            self._symbol = u"♟"
             self._directions = ["s"]
             self._capture_dirs = ["sw", "se"]
 
