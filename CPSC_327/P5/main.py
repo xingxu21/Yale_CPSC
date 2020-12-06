@@ -156,11 +156,14 @@ if __name__ == "__main__":
 		player2 = Player.create_player("human")
 
 	if len(sys.argv) > 4:
-		size = sys.argv[4]
+		size = int(sys.argv[4])
 	else:
 		size = 8
 	
-	history = len(sys.argv) > 5 and sys.argv[5] == "history"
+	if len(sys.argv) > 5:
+		history = sys.argv[5] == "history"
+	else:
+		history = False
 
 	#chess is restricted to size 8 board
 	if game_type == CHESS and size != 8:
