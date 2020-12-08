@@ -4,6 +4,9 @@
 """
 This file contains all of the tests for my connect 4 minimax agent. In each set of tests, the minimax agent is played against the random agent, and the win rate of the minimax agent for that set of tests is reported. The different sets of tests are described below:
 
+zeroth set:
+	random against random 20 times
+
 first set:
 	minimax depth 1 against random 20 times
 
@@ -16,7 +19,7 @@ third set:
 
 
 typical output:
-
+random(player1) won 9 out of 20 games
 minimax depth 1 won 18 out of 20 games
 minimax depth 2 won 19 out of 20 games
 minimax depth 3 won 20 out of 20 games
@@ -43,6 +46,31 @@ the depth for minimax is specified by the intiger immediately after 'minimax', i
 ##################################### definitions of tests ###########################################
 import os
 
+#set0
+def test_set_0():
+	#clear output file
+	os.system("touch output")
+	os.system("rm output")
+	for run in range(20):
+		out = os.system("python3 main.py random random | tail -n 1 >> output")
+
+	results = open("output", "r")
+
+	dic = {"white":0}
+
+	for line in results:
+		line = line.strip()
+		words = line.split(" ")
+
+		for word in words:
+			if word in dic:
+				dic[word]+=1
+
+
+	print("random(player1) won %s out of 20 games"%dic["white"])
+
+
+
 #set 1
 def test_set_1():
 	#clear output file
@@ -67,7 +95,7 @@ def test_set_1():
 
 
 
-#set 1
+#set 2
 def test_set_2():
 	#clear output file
 	os.system("rm output")
@@ -91,7 +119,7 @@ def test_set_2():
 
 
 
-#set 1
+#set 3
 def test_set_3():
 	#clear output file
 	os.system("rm output")
@@ -118,6 +146,7 @@ def test_set_3():
 
 ######################################## run the tests ##############################################
 
+test_set_0()
 test_set_1()
 test_set_2()
 test_set_3()
