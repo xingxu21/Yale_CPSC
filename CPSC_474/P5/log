@@ -1,0 +1,14 @@
+ESTIMATE of time to complete assignment: 12 hours
+
+    	Time	Time
+Date	Started Spent Work completed
+----  -------  ----  --------------
+11/9	6:00pm  2:00 rewatched relevant and started implementation
+11/10 	6:00pm  3:00 continued implementation, googled more about QL learning when stuck
+11/13 	6:00pm  4:00 Finished implementation, debugged a little
+11/15 	4:00pm  2:00 working program. Debugged and optimized a bit. achieved 0.49 and 0.46 consistently
+11/16	6:00pm  2:00 further optimize
+	               ----
+               13  TOTAL time spent
+
+I began by rewatching some lectures and googling before writing out some skeleton code with descriptions of what functions should be doing. Also read through the nfl_strategy module to get a sense of what was going on. Was able to do this in one day. Had trouble with some debugging, had some minor issues with how I was doing rewards and as a result was having very bad results (around 0.016), was able to improve after finding the bug in how rewards are handled. After that, I mostly worked on messing with learning rate to try and improve. Was able to achieve 0.49 consistently for 0 and 0.46 for 1. At the suggestion of a piazza post, worked on messing with some constants to try and achieve better results. 
