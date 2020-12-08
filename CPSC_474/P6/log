@@ -1,0 +1,13 @@
+ESTIMATE of time to complete assignment: 10 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+12/4  3:20pm   2:30	researched connect 4 solvers
+12/6  4:30pm   3:00 implemented framework for game: human and random players. 
+12/7  4:14pm   2:30 implemented basic minimax search. Seems very slow, need to debugg
+12/8  10:30am  3:30 implemented alpha beta pruning. fixed bugs with evaluate function. Modified evaluate function (debugg and change heuristic) extensive testing
+	               ----
+               11:30  TOTAL time spent
+
+I had difficulty with the evaluate function used in minimax (I got myself a little bit confused at times), and with determining a good heuristic for minimax. I also initially thought that I would not need to implement alpha beta pruning, but it turns out that it was necessary for the algorithm to run in a reasonable amount of time. Great class! Learned a lot, had fun!
